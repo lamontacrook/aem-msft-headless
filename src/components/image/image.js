@@ -29,11 +29,7 @@ const Image = ({ asset, imageProps = {
     }
   };
 
-  if (!asset) return (
-    <picture>
-      <img src={context.brokenImage} alt='broken image' />
-    </picture>
-  );
+  if (!asset) return;
 
   const src = context.serviceURL.replace(/\/+$/, '') + asset._path;
   const srcDM = imageUrl(context, asset);

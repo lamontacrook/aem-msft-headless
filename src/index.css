@@ -247,7 +247,7 @@ div[role=status] {
   --main-dark-background: rgba(41,41,41);
   --light-nav: #fff;
   --font-size-body: 18px;
-  --line-height-body: 2.5;
+  --line-height-body: 1.5;
   --fontSizeH1: 60px;
   --fontSizeH2: 28px;
   --fontSizeH3: 24px;
@@ -263,7 +263,7 @@ div[role=status] {
   --navFontWeight: 500;
   --fontWeightM: var(--navFontWeight);
   --h1FontWeight: 600;
-  --h1FontSize: 72px;
+  --h1FontSize: 62px;
   --line-height-l: 76px;
   --body-font-family: adobe-clean, arial, sans-serif;
   --body-title-font-family: var(--body-font-family);
