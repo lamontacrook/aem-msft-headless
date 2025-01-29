@@ -76,6 +76,7 @@ const Screen = () => {
 
   updateCss();
 
+
   return (
     <React.Fragment>
       <Helmet>
@@ -84,29 +85,32 @@ const Screen = () => {
       {data && data.screen &&
         <div className='screen' {...editorProps(data.screen.body, `${title} Screen`, '', 'reference')} >
           {data.screen.body.header && config.configurationByPath &&
-            <Header data={data} content={data.screen.body.header} config={config} className='screen' />
+            <Header data={data} content={data.screen.body.header} references={data.screen._references} config={config} className='screen' />
           }
-          <div className='main-body' {...editorProps(data.screen.body, 'Screen Components', 'block', 'container', 'container')}>
-            {data.screen.body.block.map((item, i) => {
-              if (item && item?._model?.title) {
-                return (
-                  <div key={i} className='block'>
-                    <Delayed waitBeforeShow={200}>
-                      <ModelManager
-                        key={`${item.__typename}-entity-${i}`}
-                        content={item}
-                        config={config.configurationByPath.item}
-                        references={data.screen._references}
-                      ></ModelManager>
-                    </Delayed>
-                  </div>
-                );
-              }
-            })}
-            {config && config.configurationByPath && config.configurationByPath.item && (
-              <Modal config={config.configurationByPath.item} />
-            )}
-          </div>
+          {data.screen.body.block.length > 0 && (
+            <div className='main-body' {...editorProps(data.screen.body, 'Screen Components', 'block', 'container', 'container')}>
+              {data.screen.body.block.map((item, i) => {
+                if (item && item?._model?.title) {
+                  return (
+                    <div key={i} className='block'>
+                      <Delayed waitBeforeShow={200}>
+                        <ModelManager
+                          key={`${item.__typename}-entity-${i}`}
+                          content={item}
+                          config={config.configurationByPath.item}
+                          references={data.screen._references}
+                        ></ModelManager>
+                      </Delayed>
+                    </div>
+                  );
+                }
+              })}
+              {/* {config && config.configurationByPath && config.configurationByPath.item && (
+   <Modal config={config.configurationByPath.item} />
+ )} */}
+            </div>
+          )}
+
         </div>}
       <footer>
         {config && config.configurationByPath && config.configurationByPath.item.footerExperienceFragment &&

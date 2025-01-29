@@ -1,0 +1,44 @@
+import React from 'react';
+import Proptypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import Image from '../image';
+import { mapJsonRichText } from '../../utils/renderRichText';
+import { editorProps } from '../../utils/ue-definitions';
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
+
+
+import './carousel.css';
+
+const Slides = ({ content, references }) => {
+  console.log(content);
+  return (
+    <Carousel showArrows={true} showThumbs={true} showIndicators={true}>
+
+      {content.cards && content.cards.map((card, i) => (
+        <div key={i}>
+          <Image asset={card.backgroundAsset} alt='Banner Image' />
+          <div className='carousel-teaser'>
+            <div className='content-layer'>
+              {mapJsonRichText(card.headline.json)}
+              {mapJsonRichText(card.description.json)}
+            </div>
+            <div className='asset-layer'>
+              <Image asset={card.asset} alt='Banner Image' />
+            </div>
+          </div>
+
+        </div>
+      )
+
+      )}
+    </Carousel>
+  );
+};
+
+Slides.propTypes = {
+  content: Proptypes.object,
+  references: Proptypes.oneOfType([Proptypes.object, Proptypes.array])
+};
+
+export default Slides;
