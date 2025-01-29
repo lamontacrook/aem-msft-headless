@@ -13,6 +13,13 @@
   min-width: 1024px;
 }
 
+
+.carousel .slide > picture > img {
+  object-fit: fill;
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
 .carousel-teaser .carousel-body {
   display: flex;
   flex-direction: row-reverse;
@@ -60,7 +67,10 @@
 }
 
 .carousel {
+  /* position: absolute; */
+  /* top: 0; */
   position: sticky;
+  /* background-color: #00A3EE; */
   width: var(--hero-teaser-width);
   height: var(--hero-teaser-height);
   display: flex;
@@ -70,8 +80,13 @@
 }
 
 .iframe .carousel {
-  height: 800px;
-  background-color: var(--main-dark-background);
+  height: 100%;
+}
+
+.iframe .carousel .slide > picture > img {
+  object-fit: fill;
+  min-height: 100%;
+  min-width: 100%;
 }
 
 .carousel .button {
