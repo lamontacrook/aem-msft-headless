@@ -3,16 +3,19 @@ import Teaser from '../../components/teaser';
 import ImageList from '../../components/imagelist';
 import MagazineArticle from '../../components/magazine-article';
 import Products from '../../components/products/products';
+import Slides from '../../components/carousel/carousel';
 import PropTypes from 'prop-types';
 
 export const componentMapping = {
   Teaser,
   ImageList,
   MagazineArticle,
-  Products
+  Products,
+  Slides
 };
 
 const ModelManager = ({ content, config, references }) => {
+  console.log(content);
   const type = content.__typename.replace(/([V2]{2})?Model/g, '');
   const Component = componentMapping[type];
  

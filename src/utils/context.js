@@ -2,8 +2,8 @@ import { createContext } from 'react';
 import BrokenImage from '../media/broken.jpg';
 
 const defaultEndpoint = '/content/_cq_graphql/aem-demo-assets/endpoint.json';
-const defaultProject = 'wknd-headless';
-const defaultServiceURL = 'https://author-p124331-e1227315.adobeaemcloud.com/';
+const defaultProject = 'msft';
+const defaultServiceURL = 'https://author-p94353-e882776.adobeaemcloud.com/';
 const defaultPlaceholdersExtensionURL = 'https://1154643-geoipplaceholders.adobeio-static.net/api/v1/web/geoip-placeholders';
 
 export const AppContext = createContext({

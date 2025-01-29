@@ -50,7 +50,7 @@ const imageSizes = [
   }
 ];
 
-const Header = ({ content, config, className }) => {
+const Header = ({ content, config, className, references }) => {
   const fadeOutHandler = () => {
     if (document.querySelector('#flyout') && document.querySelector('#flyout').getAttribute('aria-expanded')) return;
     const hero = document.querySelector('header');
@@ -78,23 +78,30 @@ const Header = ({ content, config, className }) => {
   if (!content.banner && content.teaser)
     content['teaser']['_path'] = !content['teaser']['_path'] ? content._path.replace('header', 'hero') : content['teaser']['_path'];
 
+  console.log(content);
   return (
     <React.Fragment>
-      <header className={`home-${content.teaser ? 'hero' : 'article'} ${className}`} 
-        {...editorProps(content, 'Header', 'header', 'container', 'container')} role='banner'>
-        {content && (
-          <Delayed><Navigation className={content.navigationColor} config={config} screen={content} /></Delayed>
-        )}
+      {content.__typename === 'HeaderV2Model' &&
+        <header className={`home-${content.teaser ? 'hero' : 'article'} ${className}`}
+          {...editorProps(content, 'Header', 'header', 'container', 'container')} role='banner'>
+          {content && (
+            <Delayed><Navigation className={content.navigationColor} config={config} screen={content} /></Delayed>
+          )}
 
-        {content.teaser &&
-          <ModelManager
-            content={content.teaser}
-            config={config.configurationByPath.item}
-          ></ModelManager>}
-        {content.banner && !content.teaser &&
-          <Image asset={content.banner} alt='Banner Image' config={config.configurationByPath.item} imageSizes={imageSizes} height={400}/>
-        }
-      </header>
+          {content.teaser &&
+            <ModelManager
+              content={content.teaser}
+              config={config.configurationByPath.item}
+            ></ModelManager>}
+          {content.banner && !content.teaser &&
+            <Image asset={content.banner} alt='Banner Image' config={config.configurationByPath.item} imageSizes={imageSizes} height={400} />
+          }
+        </header>
+      }
+
+      {content.__typename !== 'HeaderV2Model' &&
+        <ModelManager content={content} references={references}></ModelManager>
+      }
     </React.Fragment>
   );
 };
@@ -104,7 +111,8 @@ Header.propTypes = {
   config: PropTypes.object,
   content: PropTypes.object,
   className: PropTypes.string,
-  context: PropTypes.object
+  context: PropTypes.object,
+  references: PropTypes.object
 };
 
 export default Header;
