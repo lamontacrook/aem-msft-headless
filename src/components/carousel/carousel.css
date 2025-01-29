@@ -69,3 +69,19 @@
   color:white;
   border: #00A3EE;
 }
+
+.carousel-teaser .dark {
+  color: #000;
+}
+
+.carousel-teaser .dark h1 {
+  color: #000;
+}
+
+.carousel-teaser .light {
+  color: #fff;
+}
+
+.carousel-teaser .light h1 {
+  color: #fff;
+}
