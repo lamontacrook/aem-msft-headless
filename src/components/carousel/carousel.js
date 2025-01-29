@@ -17,8 +17,20 @@ const Slides = ({ content, references }) => {
     'data-aue-type': 'container',
     'data-aue-model': content?._model?._path,
     'data-aue-behavior': 'component',
-    'data-aue-label': 'Slides'
+    'data-aue-label': 'Slides',
+    'data-aue-filter': 'slides',
+    'data-aue-prop':'cards'
   };
+
+  // const listProps = {
+  //   'data-aue-resource': `urn:aemconnection:${content._path}/jcr:content/data/${content._variation}`,
+  //   'data-aue-type': 'container',
+  //   'data-aue-label': content.headline.plaintext,
+  //   'data-aue-behavior': 'component',
+  //   'data-aue-model': content?._model?._path,
+  //   'data-aue-filter': 'image-list',
+  //   'data-aue-prop': 'listItems'
+  // };
   let inFrame = false;
   if (window.location !== window.parent.location) {
     inFrame = true;
@@ -31,7 +43,7 @@ const Slides = ({ content, references }) => {
           <div key={i} className='slide' data-aue-type='reference' data-aue-model={card?._model?._path} data-aue-behavior='component' data-aue-resource={`urn:aemconnection:${card._path}/jcr:content/data/${card?._variation}`} data-aue-label={card?.cardName}>
             <Image asset={card.backgroundAsset} alt='Banner Image' />
             <div className='carousel-teaser'>
-              <div className='carousel-body'>
+              <div className={`carousel-body ${card.fontColor}`}>
                 <div className='content-layer'>
                   <span data-aue-prop='headline' data-aue-type='richtext' data-aue-label='Headline'>{mapJsonRichText(card.headline.json)}</span>
                   <span data-aue-prop='description' data-aue-type='richtext' data-aue-label='Description'></span>{mapJsonRichText(card.description.json)}

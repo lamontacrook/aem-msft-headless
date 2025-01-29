@@ -7,6 +7,10 @@ export const filterDefinition = () => {
     {
       'id': 'image-list',
       'components': [ 'article']
+    },
+    {
+      'id':'slides',
+      'components':['card']
     }
   ];
 };
@@ -39,6 +43,46 @@ export const modelDefinition = () => {
           'name': 'asset',
           'label': 'Asset',
           'valueType': 'asset'
+        }
+      ]
+    },
+    {
+      'id': 'card',
+      'fields': [
+        {
+          'component': 'text-input',
+          'name': 'headline',
+          'label': 'Headline',
+          'valueType': 'string'
+        },
+        {
+          'component': 'text-area',
+          'name': 'description',
+          'label': 'Description',
+          'valueType': 'string'
+        },
+        {
+          'component': 'reference',
+          'name': 'callToAction',
+          'label': 'Call to Action',
+          'valueType': 'string'
+        },
+        {
+          'component': 'asset',
+          'name': 'asset',
+          'label': 'Asset',
+          'valueType': 'asset'
+        }
+      ]
+    },
+    {
+      'id': 'slides',
+      'fields': [
+        {
+          'component': 'reference',
+          'name': 'card',
+          'label': 'Card',
+          'valueType': 'string'
         }
       ]
     },
@@ -126,6 +170,24 @@ export const componentDefinition = (context) => {
                   'description': 'Magazine Article Content Fragment',
                   'template': {
                     'headline': 'Magazine Article'
+                  }
+                }
+              }
+            }
+          },
+          {
+            'title': 'Card',
+            'id': 'card',
+            'plugins': {
+              'aem': {
+                'cf': {
+                  'name': 'article',
+                  'cfModel': '/conf/aem-demo-assets/settings/dam/cfm/models/card',
+                  'cfFolder': `/content/dam/${context.project}/site/en/default/`,
+                  'title': 'Card',
+                  'description': 'Card for Slides',
+                  'template': {
+                    'headline': 'card'
                   }
                 }
               }
